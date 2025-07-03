@@ -10,24 +10,34 @@ function App() {
         <h1 className='titulo'>Every Penny</h1>
       </div>
 
+      <img src="/logo.png" alt=""  width="200px" height="200px"/>
+
       <div className='converter'>
         <div className='convertin'>
-          <select name="cin" id="cin" className='cin'>
-            <option value="brl">BRL</option>
-            <option value="usd">USD</option>
-            <option value="euro">EURO</option>
-          </select>
-
-          <input type="text" />
+          <div>
+            <select name="cin" id="cin" className='cin'>
+              <option value="brl">BRL</option>
+              <option value="usd">USD</option>
+              <option value="euro">EURO</option>
+            </select>
+          </div>
+          <div>
+            <input name="numin" id="numin" type='text' />
+          </div>
         </div>
         <div className='convertout'>
-          <select name="cout" id="cout" className='cout'>
-            <option value="brl">BRL</option>
-            <option value="usd">USD</option>
-            <option value="euro">EURO</option>
-          </select>
-        </div>
+          <div>
+            <select name="cout" id="cout" className='cout'>
+              <option value="brl">BRL</option>
+              <option value="usd">USD</option>
+              <option value="euro">EURO</option>
+            </select>
+          </div>
 
+          <div>
+            <input name="numout" id="numout" type='text' />
+          </div>
+        </div>
       </div>
     </>
   )

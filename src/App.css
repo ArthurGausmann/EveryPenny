@@ -5,30 +5,38 @@
 
 .titulo {
   color: green;
-  margin: auto;
-  margin-top: 10vh;
+  margin: 3vh auto 2vh auto;
   font-size: 7rem;
   display: flex;
 }
 
-.convert {
-  display: flex;
-}
-
-select {
+img {
   display: flex;
   margin: auto;
 }
 
-.cin, .cout {
-  margin: 2vh auto;
+.converter {
+  display: flex;
   flex-direction: column;
+}
+
+.convertin, .convertout {
+  margin: auto;
+}
+
+.cin, .cout {
+  margin: 3vh auto 1vh auto;
+  flex-direction: row;
   padding: 1vh 2vh;
   border-radius: 1vh;
   border: none;
   background-color: grey;
 }
 
-option {
+input {
+  margin: auto;
+  width: 5rem;
+  padding: 1vh 2vh;
+  border-radius: 1vh;
   border: none;
 }
