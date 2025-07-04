@@ -10,7 +10,7 @@ function App() {
         <h1 className='titulo'>Every Penny</h1>
       </div>
 
-      <img src="/logo.png" alt=""  width="200px" height="200px"/>
+      <img src="/logo.png" alt="Logo Every Penny"  width="200px" height="200px"/>
 
       <div className='converter'>
         <div className='convertin'>
