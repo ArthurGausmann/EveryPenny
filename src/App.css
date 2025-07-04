@@ -17,16 +17,19 @@ img {
 
 .converter {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
-.convertin, .convertout {
-  margin: auto;
+.convertin {
+  margin: auto 1vh auto auto;
+}
+
+.convertout {
+  margin: auto auto auto 1vh;
 }
 
 .cin, .cout {
   margin: 3vh auto 1vh auto;
-  flex-direction: row;
   padding: 1vh 2vh;
   border-radius: 1vh;
   border: none;
