@@ -9,8 +9,6 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
-  const apiKey = 'eaa28caf45f6a0f7a27cedb3fa5e4af5' // Chave de API
-
   const handleConvert = async (e) => {
     e.preventDefault()
     setLoading(true)
