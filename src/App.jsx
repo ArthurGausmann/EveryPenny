@@ -4,8 +4,8 @@ import './App.css'
 function App() {
   const [from, setFrom] = useState('USD')
   const [to, setTo] = useState('BRL')
-  const [amount, setAmount] = useState('0')
-  const [result, setResult] = useState()
+  const [amount, setAmount] = useState('1')
+  const [result, setResult] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
@@ -17,20 +17,21 @@ function App() {
     setError(null)
 
     try {
-      const endpoint = 'convert' 
-      const url = `https://api.exchangeratesapi.io/v1/${endpoint}?access_key=${apiKey}&from=${from}&to=${to}&amount=${amount}`
-
-      const response = await fetch(url)
+      if (from == to){
+        alert('As moedas não podem ser iguais!')
+      }
+  
+      const response = await fetch(`https://api.frankfurter.app/latest?from=${from}&to=${to}`)
       if (!response.ok){
         throw new Error(`Erro HTTP: ${response.status}`)
       }
 
       const data = await response.json()
-      if (!data.success){
-        throw new Error(`API Error ${data.error.code}: ${data.error.info}`)
+      if (!data.rates || !data.rates[to]){
+        throw new Error('Taxa de câmbio indisponível')
       }
 
-      setResult(data.result)
+      setResult((parseFloat(amount) * data.rates[to]).toFixed(2))
 
     } catch(err) {
       setError(err.message)
@@ -71,12 +72,12 @@ function App() {
           </div>
 
           <div>
-            <input id="result" type='number' readOnly value={result}/>
+            <input id="result" type='text' readOnly value={loading ? "..." : error ? "Erro" : result}/>
           </div>
         </div>
       </div>
 
-      <button type='submit' disabled={loading}>Converter</button>
+      <button className='submit' type='submit' disabled={loading}>Converter</button>
       </form>
     </>
   )

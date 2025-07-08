@@ -44,3 +44,12 @@ input {
   border-radius: 1vh;
   border: none;
 }
+
+.submit {
+  display: flex;
+  margin: 2rem auto;
+  padding: 1vh 2vh;
+  border-radius: 1vh;
+  border: none;
+  background-color: grey;
+}
