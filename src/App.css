@@ -52,4 +52,5 @@ input {
   border-radius: 1vh;
   border: none;
   background-color: grey;
+  cursor: pointer;
 }
