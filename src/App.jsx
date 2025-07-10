@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react' // Importa a função useState do react
+import './App.css' // Importa a estilização CSS do ./App.css
 
 function App() {
   const [from, setFrom] = useState('USD') // Define a variável de estado para receber a moeda base para conversão (USD como inicial)
@@ -15,7 +15,7 @@ function App() {
     setLoading(true) // Define o carregamento como verdadeiro enquanto a conversão é feita
     setError(null) // Define o erro como nulo
 
-    try { // Executa as funções seguintes
+    try { // Executa as funções seguintes pelo 'try' (com catch e finally)
       if (from == to){ // Se as variáveis 'from' e 'to' forem iguais (ou seja, nã se pode converter uma moeda pra ela mesma)
         alert('As moedas não podem ser iguais!') // Envia um alerta informando o usuário
       }
@@ -32,12 +32,14 @@ function App() {
       // response.json(): Analisa o corpo da 'response' e retorna os dados JSON
       // response.text(): Analisa o corpo da 'response' e retorna os dados como texto
 
-      const data = await response.json()
-      if (!data.rates || !data.rates[to]){
-        throw new Error('Taxa de câmbio indisponível')
+      const data = await response.json() // Define a variável 'data' com a 'response.json' (esta ação utiliza await para garantir que ela seja executada)
+      if (!data.rates || !data.rates[to]){ // Caso 'data.rates' ou 'data.rates[to]' dêem erro
+        throw new Error('Taxa de câmbio indisponível') // Envia uma mensagem de erro sobre a indisponibilidade da taxa de câmbio (conversão)
       }
 
-      setResult((parseFloat(amount) * data.rates[to]).toFixed(2))
+      setResult((parseFloat(amount) * data.rates[to]).toFixed(2)) // Define a variável 'result' que é a multiplicação do 'amount' (quantidade definida pelo usuário, que é uma variável float)
+      // e data.rates[to] que consiste na taxa de conversão de câmbio da moeda destino escolhida
+      // tudo isso com o limite de apenas duas casas após da vírgula, a partir da função '.toFixed(2)'
 
     } catch(err) { // Executa casa ocorra uma exceção no 'try' (no caso um erro)
       setError(err.message) // Define a variável 'error' com o erro ocorrido
@@ -46,6 +48,12 @@ function App() {
     }
   }
 
+  // Em seguida o HTML do sistema, onde o 'form' lida com o 'handleConvert' (ou seja, quando ele é submetido a função é ativada)
+  // Os 'select' servem para definir as moedas base e destino para conversão, elas são previamente definidas (e são enviadas para a função alterando as variáveis de estado 'from' e 'to')
+  // O primeiro 'input' vai receber um valor superior a 0.01 que servirá como a quantidade para conversão (modifica a variável de estado 'amount')
+  // O segundo 'input' servirá como um visor (por ser readOnly) ele vai mostrar o resultado da conversão ('result') 
+  // (além disso, vai mostrar "..." enquanto o 'loading' estiver ativo e "Erro" caso ocorra algum)
+  // O 'button' vai enviar o 'form' e ficará desabilitado enquanto a conversão é realizada ('loading' true)
   return (
     <>
       <div className='titulo'>
@@ -54,7 +62,7 @@ function App() {
 
       <img src="/logo.png" alt="Logo Every Penny"  width="200px" height="200px"/>
 
-      <form onSubmit={handleConvert}>
+      <form onSubmit={handleConvert}> 
       <div className='converter'>
         <div className='convertin'>
           <div>
