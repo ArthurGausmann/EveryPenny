@@ -9,20 +9,28 @@ function App() {
   const [loading, setLoading] = useState(false) // Define a variável de estado do carregamento da conversão (falso como inicial)
   const [error, setError] = useState(null) // Define a variável de estado de possíveis erros no sistema (nulo como inicial)
 
-  const handleConvert = async (e) => { // Define a função Handle Convert, que vai receber os parâmetros e realizar a conversão por meio da API
+  const handleConvert = async (e) => { // Define a função Handle Convert que é asíncrona (ou seja, pode ser executada junto com outras tarefas, sem bloquear nada)
+    // , que vai receber o parâmetro 'e' e realizar a conversão por meio da API
     e.preventDefault() // Previne que a função ralize sua função principal (no caso o form)
     setLoading(true) // Define o carregamento como verdadeiro enquanto a conversão é feita
     setError(null) // Define o erro como nulo
 
     try { // Executa as funções seguintes
-      if (from == to){
-        alert('As moedas não podem ser iguais!')
+      if (from == to){ // Se as variáveis 'from' e 'to' forem iguais (ou seja, nã se pode converter uma moeda pra ela mesma)
+        alert('As moedas não podem ser iguais!') // Envia um alerta informando o usuário
       }
   
-      const response = await fetch(`https://api.frankfurter.app/latest?from=${from}&to=${to}`)
-      if (!response.ok){
-        throw new Error(`Erro HTTP: ${response.status}`)
+      const response = await fetch(`https://api.frankfurter.app/latest?from=${from}&to=${to}`) // Define a variável 'response' para receber a API (com as variáveis 'from' e 'to')
+      // ela utiliza 'fetch' (faz a requisição HTTP {no caso da API} e fornece uma resposta "Promise" {representa a conclusão da operação, no caso fetch})
+      // o await serve para pausar a execução async enquanto a fetch não for finalizada
+      if (!response.ok){ // Se a 'response' não estiver 'ok' de acordo com a resposta do "Promise"
+        throw new Error(`Erro HTTP: ${response.status}`) // Envia uma mensagem de erro específica para o erro ocorrido de acordo com o "Promise"
       }
+      // A partir de agora a 'response' está definida pelo "Promise" ou seja, 
+      // response.ok:     Indicador booleano que informe se o status da 'response' está correta ou não
+      // response.status: Fornece o status HTTP do código (ex: 200, 404, ...)
+      // response.json(): Analisa o corpo da 'response' e retorna os dados JSON
+      // response.text(): Analisa o corpo da 'response' e retorna os dados como texto
 
       const data = await response.json()
       if (!data.rates || !data.rates[to]){
