@@ -1,8 +1,17 @@
 import { useState } from 'react'
+import Modal from './components/Modal'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isModalOpen, setisModalOpen] = useState(false)
+  const [ultimosGastos, setUltimosGastos] = useState([]) // Define o useState para a lista de Últimos Gastos
+  const [novoUg, setNovoUg] = useState('') // useState para adicionar um novo item a lista Últimos Gastos
+
+  const addNovoUg = () => {
+    if (novoUg.trim !== '') {
+      setUltimosGastos([...ultimosGastos, { text: `R$ ${novoUg}` }]);
+    }
+  };
 
   return (
     <>
@@ -20,35 +29,42 @@ function App() {
         </div>
         <div className='dashboard'>
           <div className='db-header'>
-            <img src="" alt="" width='25px' height='25px'/>
-            <h2>Perfil 2</h2>
+            <div className='db-profile'>
+              <img src="" alt="" width='25px' height='25px'/>
+              <h2>Perfil 2</h2>
+            </div>
+            <div className='db-layout'>
+              <button>Editar</button>
+            </div>
           </div>
           <div className='card-ug'>
             <div className='ug-header'>
               <h3>Últimos gastos</h3>
-              <button>+</button>
+              <button onClick={() => setisModalOpen(true)}>+</button>
             </div>
             <div className='ug-content'>
-              <ul>
+              <ul> {ultimosGastos.map((ug, index) => (<li key={index}><span>{ug.text}</span></li>))}
                 <li>R$ 35,42 - Comida</li>
-                <li>R$ 42,37 - Saúde</li>
-                <li>R$ 79,90 - Lazer</li>
-                <li>R$ 4,00 - Comida</li>
-                <li>R$ 25,00 - Lazer</li>
-                <li>R$ 15,42 - Comida</li>
-                <li>R$ 82,37 - Saúde</li>
-                <li>R$ 29,90 - Lazer</li>
-                <li>R$ 2,00 - Comida</li>
-                <li>R$ 27,00 - Lazer</li>
-                <li>R$ 135,42 - Comida</li>
-                <li>R$ 12,37 - Saúde</li>
-                <li>R$ 23,90 - Lazer</li>
-                <li>R$ 4,00 - Comida</li>
-                <li>R$ 35,00 - Lazer</li>
               </ul>
             </div>
           </div>
         </div>
+        <Modal isOpen={isModalOpen} onClose={() => setisModalOpen(false)}>
+          <div className='modalUg'>
+            <form action="" className='formUg'>
+              <input className='formGroup' type="text" placeholder='R$' value={novoUg} onChange={(e) => setNovoUg(e.target.value)} required />
+              <select className='formGroup' name="" id="">
+                <option value="">Comida</option>
+                <option value="">Lazer</option>
+                <option value="">Saúde</option>
+                <option value="">Manutenção</option>
+                <option value="">Outros</option>
+              </select>
+              <input className='formGroup' type="date" />
+              <button className='formGroup' type='submit' onClick={addNovoUg}>Adcionar</button>
+            </form>
+          </div>
+        </Modal>
       </div>
     </>
   )

@@ -75,13 +75,33 @@
 }
 
 .db-header {
-  margin: 10px auto 10px 50px;
+  margin: 10px auto 15px 50px;
   display: flex;
   align-items: left;
 }
 
 .db-header img{
   margin-right: 15px;
+}
+
+.db-profile {
+  display: flex;
+}
+
+.db-header .db-layout {
+  margin-left: auto;
+  margin-right: 5rem;
+}
+
+.db-layout button {
+  padding: 5px 8px;
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+.db-layout button:hover {
+  background-color: lightgray;
+  cursor: pointer;
 }
 
 .card-ug {
@@ -124,3 +144,17 @@
 .ug-content>ul {
   list-style: none;
 }
+
+.formUg>button:hover {
+  background-color: lightgray;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+  width: 80%;
+  padding: 12px 15px;
+  border: 1px solid #dce1e6;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
