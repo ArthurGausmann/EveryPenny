@@ -7,11 +7,39 @@ function App() {
   const [ultimosGastos, setUltimosGastos] = useState([]) // Define o useState para a lista de Últimos Gastos
   const [novoUg, setNovoUg] = useState('') // useState para adicionar um novo item a lista Últimos Gastos
 
-  const addNovoUg = () => {
-    if (novoUg.trim !== '') {
-      setUltimosGastos([...ultimosGastos, { text: `R$ ${novoUg}` }]);
+  class UltGasto {
+    constructor(valor, tipo, data) {
+      this.valor = valor;
+      this.tipo = tipo;
+      this.data = data;
     }
-  };
+
+    validarDados() {
+      for (let key in this) {
+        if (this[key] === undefined || this[key] === "") {
+          console.error(`O campo '${key}' é obrigatório!`)
+        } return false
+      } return true
+    }
+  }
+
+  function addNovoUg() {
+    const valor = document.getElementById('valor').value
+    const tipo = document.getElementById('tipo').value
+    const data = document.getElementById('data').value
+
+    const ug = new UltGasto(valor, tipo, data)
+
+    if (ug.validarDados()) {
+      setUltimosGastos([...ultimosGastos, { text: `R$ ${ug}` }])
+    }
+  }
+
+  // const addNovoUg = () => {
+  //   if (novoUg.trim !== '') {
+  //     setUltimosGastos([...ultimosGastos, { text: `R$ ${novoUg}` }]);
+  //   }
+  // };
 
   return (
     <>
@@ -30,7 +58,7 @@ function App() {
         <div className='dashboard'>
           <div className='db-header'>
             <div className='db-profile'>
-              <img src="" alt="" width='25px' height='25px'/>
+              <img src="./assets/exemploPerfil.jpeg" alt="Miniatura do Perfil" width='25px' height='25px'/>
               <h2>Perfil 2</h2>
             </div>
             <div className='db-layout'>
