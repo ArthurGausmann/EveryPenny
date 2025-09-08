@@ -1,0 +1,53 @@
+.card-ug {
+  width: 20%;
+  margin: 10px;
+  padding: 15px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.ug-header {
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+.ug-header button {
+  border-radius: 50%;
+  border: none;
+  height: 20px;
+  width: 20px;
+}
+
+.ug-header a {
+  margin-left: auto;
+}
+
+.ug-content {
+  height: 200px;
+  overflow-y: auto;
+}
+
+.ug-content a {
+  text-decoration: none;
+  color: black;
+}
+
+.ug-content>ul {
+  list-style: none;
+}
+
+.formUg>button:hover {
+  background-color: lightgray;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+  width: 80%;
+  padding: 12px 15px;
+  border: 1px solid #dce1e6;
+  border-radius: 6px;
+  font-size: 1rem;
+}
