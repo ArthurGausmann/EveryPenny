@@ -58,7 +58,7 @@ function App() {
         <div className='dashboard'>
           <div className='db-header'>
             <div className='db-profile'>
-              <img src="./assets/exemploPerfil.jpeg" alt="Miniatura do Perfil" width='25px' height='25px'/>
+              <img src='/logo.png' alt="Miniatura do Perfil" width='25px' height='25px'/>
               <h2>Perfil 2</h2>
             </div>
             <div className='db-layout'>
@@ -80,15 +80,16 @@ function App() {
         <Modal isOpen={isModalOpen} onClose={() => setisModalOpen(false)}>
           <div className='modalUg'>
             <form action="" className='formUg'>
-              <input className='formGroup' type="text" placeholder='R$' value={novoUg} onChange={(e) => setNovoUg(e.target.value)} required />
-              <select className='formGroup' name="" id="">
-                <option value="">Comida</option>
-                <option value="">Lazer</option>
-                <option value="">Saúde</option>
-                <option value="">Manutenção</option>
-                <option value="">Outros</option>
+              <input className='formGroup' type="text" placeholder='R$' id='valor' value={novoUg} onChange={(e) => setNovoUg(e.target.value)} required />
+              <select className='formGroup' name="" id="tipo">
+                <option selected>Tipo</option>
+                <option value="Comida">Comida</option>
+                <option value="Lazer">Lazer</option>
+                <option value="Saúde">Saúde</option>
+                <option value="Manutenção">Manutenção</option>
+                <option value="Outros">Outros</option>
               </select>
-              <input className='formGroup' type="date" />
+              <input className='formGroup' type="date" id='data'/>
               <button className='formGroup' type='submit' onClick={addNovoUg}>Adcionar</button>
             </form>
           </div>
